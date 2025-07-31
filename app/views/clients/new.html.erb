@@ -1,0 +1,17 @@
+<h1>New Client</h1>
+
+<%= form_with model: @client, local: true do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.submit "Create Client" %>
+  </div>
+<% end %>

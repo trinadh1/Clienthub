@@ -1,0 +1,5 @@
+<div id="<%= dom_id(client) %>">
+  <h2><%= client.name %></h2>
+  <p><%= client.email %></p>
+  <%= link_to "Show Projects", client_projects_path(client), data: { turbo_frame: "projects" } %>
+</div>

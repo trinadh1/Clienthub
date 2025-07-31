@@ -1,0 +1,12 @@
+<h1>Invoice from <%= @project.title %></h1>
+<p>Hello <%= @client.name %>,</p>
+
+<p>You have a new invoice:</p>
+
+<ul>
+  <li><strong>Due Date:</strong> <%= @invoice.due_date %></li>
+  <li><strong>Total Amount:</strong> <%= number_to_currency(@invoice.total_amount) %></li>
+  <li><strong>Status:</strong> <%= @invoice.status %></li>
+</ul>
+
+<p>Thank you!</p>

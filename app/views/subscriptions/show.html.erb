@@ -1,0 +1,37 @@
+<h1>Your Subscription</h1>
+
+<% if @subscription.present? %>
+  <p><strong>Plan:</strong> <%= @subscription.plan.capitalize %></p>
+  <p><strong>Status:</strong> <%= @subscription.status.capitalize %></p>
+
+  <% if @subscription.status == 'active' %>
+    <%= button_to "Cancel Subscription", cancel_subscription_path, method: :post, data: { confirm: "Are you sure?" } %>
+  <% elsif @subscription.status == 'canceling' %>
+    <p>Your subscription will end on <%= @subscription.current_period_end.strftime("%B %d, %Y") %>.</p>
+  <% else %>
+    <p>You currently have no active subscription.</p>
+  <% end %>
+
+<% else %>
+  <p>You currently have no subscription.</p>
+<% end %>
+
+<h2>Choose a Plan</h2>
+<%= form_with url: create_checkout_session_subscription_path, method: :post do %>
+  <label>
+    <input type="radio" name="price_id" value="<%= ENV['STRIPE_PRICE_FREE'] %>" <%= 'checked' unless @subscription %>>
+    Free (limited to 3 clients)
+  </label><br>
+
+  <label>
+    <input type="radio" name="price_id" value="<%= ENV['STRIPE_PRICE_PRO'] %>">
+    Pro - Unlimited clients
+  </label><br>
+
+  <label>
+    <input type="radio" name="price_id" value="<%= ENV['STRIPE_PRICE_PREMIUM'] %>">
+    Premium - All features
+  </label><br><br>
+
+  <%= submit_tag "Subscribe / Change Plan" %>
+<% end %>

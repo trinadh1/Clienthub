@@ -1,0 +1,9 @@
+<h1>Projects#show</h1>
+<h1><%= @project.title %></h1>
+
+<p><strong>Description:</strong></p>
+<p><%= @project.description %></p>
+
+<%= link_to "Edit", edit_client_project_path(@client, @project) %> |
+<%= link_to "Back to Projects", client_projects_path(@client) %>
+

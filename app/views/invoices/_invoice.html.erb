@@ -1,0 +1,12 @@
+<li id="<%= dom_id(invoice) %>">
+  <strong>Project:</strong> <%= invoice.project.title %> |
+  <strong>Due Date:</strong> <%= invoice.due_date.strftime("%b %d, %Y") %> |
+  <strong>Amount:</strong> <%= number_to_currency(invoice.total_amount) %> |
+  <strong>Status:</strong> <%= invoice.status.capitalize %> |
+
+  <%= link_to "View", client_project_invoice_path(invoice.project.client, invoice.project, invoice) %> |
+  <%= link_to "Edit", edit_client_project_invoice_path(invoice.project.client, invoice.project, invoice), data: { turbo_frame: "invoice_form_#{invoice.id}" } %> |
+  <%= link_to "Delete", client_project_invoice_path(invoice.project.client, invoice.project, invoice),
+              method: :delete,
+              data: { confirm: "Are you sure?", turbo_stream: true } %>
+</li>

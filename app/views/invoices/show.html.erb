@@ -1,0 +1,8 @@
+<h1>Invoice Details</h1>
+
+<p><strong>Project:</strong> <%= @project.title %></p>
+<p><strong>Due Date:</strong> <%= @invoice.due_date %></p>
+<p><strong>Total Amount:</strong> <%= number_to_currency(@invoice.total_amount) %></p>
+<p><strong>Status:</strong> <%= @invoice.status %></p>
+<%= button_to "Send Invoice Email", send_email_client_project_invoice_path(@client, @project, @invoice), method: :post, data: { confirm: "Send invoice to client?" } %>
+

@@ -1,0 +1,17 @@
+<h1>Projects#index</h1>
+<h1>Projects for <%= @client.name %></h1>
+
+<%= link_to "New Project", new_client_project_path(@client) %>
+
+<ul>
+  <% @projects.each do |project| %>
+    <li>
+      <%= link_to project.title, client_project_path(@client, project) %>
+      <%= link_to 'View Invoices', client_project_invoices_path(@client, project) %>
+      | <%= link_to "Edit", edit_client_project_path(@client, project) %>
+      | <%= link_to "Delete", client_project_path(@client, project), method: :delete, data: { confirm: "Are you sure?" } %>
+        <%= link_to "Manage Subscription", subscription_path, class: "btn btn-primary", style: "margin-bottom: 1rem;" %>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "Back to Clients", clients_path %>

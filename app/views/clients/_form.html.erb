@@ -1,0 +1,13 @@
+<%= form_with model: @client, class: "space-y-4" do |f| %>
+  <div>
+    <%= f.label :name, class: "block font-bold" %>
+    <%= f.text_field :name, class: "border px-4 py-2 rounded w-full" %>
+  </div>
+
+  <div>
+    <%= f.label :email, class: "block font-bold" %>
+    <%= f.email_field :email, class: "border px-4 py-2 rounded w-full" %>
+  </div>
+
+  <%= f.submit class: "bg-blue-600 text-white px-4 py-2 rounded" %>
+<% end %>

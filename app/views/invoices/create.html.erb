@@ -1,0 +1,37 @@
+<h1>New Invoice for <%= @project.title %></h1>
+
+<% if @invoice.errors.any? %>
+  <div class="errors">
+    <h2><%= pluralize(@invoice.errors.count, "error") %> prevented this invoice from being saved:</h2>
+    <ul>
+      <% @invoice.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "invoice_form_#{@invoice.id}" do %>
+  <%= form_with model: [@client, @project, @invoice], local: false do |form| %> <!-- local: false to enable Turbo functionality -->
+    <div>
+      <%= form.label :total_amount %>
+      <%= form.number_field :total_amount, step: 0.01 %>
+    </div>
+
+    <div>
+      <%= form.label :due_date %>
+      <%= form.date_field :due_date %>
+    </div>
+
+    <div>
+      <%= form.label :status %>
+      <%= form.select :status, options_for_select(['draft', 'sent', 'paid'], @invoice.status) %>
+    </div>
+
+    <div>
+      <%= form.submit "Create Invoice" %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to "Back to Projects", client_projects_path(@client) %>

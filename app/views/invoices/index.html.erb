@@ -1,0 +1,15 @@
+<h1>Invoices#index</h1>
+<h1>Invoices for Project: <%= @project.title %></h1>
+
+<%= link_to "New Invoice", new_client_project_invoice_path(@client, @project) %>
+
+<ul>
+  <% @invoices.each do |invoice| %>
+    <li>
+      <%= link_to "Invoice ##{invoice.id}", client_project_invoice_path(@client, @project, invoice) %>
+      - Amount: <%= invoice.total_amount %>
+      - Due: <%= invoice.due_date %>
+      - Status: <%= invoice.status %>
+    </li>
+  <% end %>
+</ul>
