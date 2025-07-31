@@ -65,7 +65,7 @@ gem "devise", "~> 4.9"
 
 gem "pundit", "~> 2.5"
 
-gem "stripe", "~> 15.3"
+gem "stripe", "~> 15.4"
 
 gem 'dotenv-rails', groups: [:development, :test]
 
